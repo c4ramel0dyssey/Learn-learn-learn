@@ -1,4 +1,5 @@
-### #10 공격자의 Github 리포를 조사해봅시다.. 재밌는걸 찾으셨나요? 혹시 ... 공격자의 위치를 특정할 무언가를 찾을 수 있나요? 공격자의 머물렀던 지역을 특정하려 합니다. 특히 한국시간 KST 2025년 11월 13일 오전 11시 45분 25초에 공격자가 상주했을 "가능성"이 있는 나라는 어디일까요?  
+### #10 Find their Geo-Location
+> 공격자의 Github 리포를 조사해봅시다.. 재밌는걸 찾으셨나요? 혹시 ... 공격자의 위치를 특정할 무언가를 찾을 수 있나요? 공격자의 머물렀던 지역을 특정하려 합니다. 특히 한국시간 KST 2025년 11월 13일 오전 11시 45분 25초에 공격자가 상주했을 "가능성"이 있는 나라는 어디일까요?  
 
 I first started off by looking into the contributions made on the said date.  
 ![Geolocation-1](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part2/Geolocation-1.png)<br/><br/>
@@ -15,7 +16,8 @@ Hmm the time is similar, and we have ```-0500``` at the end. This indicates the 
 Boom! Looks like we have our answer!  
 **Flag: Columbia**<br/><br/>
 
-### #11 공격자의 Github 리포를 조사해봅시다.. 혹시 재밌는걸 찾으셨나요? 이런! 공격자는 아주 "치명적인" OPSEC 실수를 저질렀습니다! 해당 정보를 사용하여 공격자의 리다이렉터 호스트로 접근 (Initial Access)하세요! 찾아낸 KEY를 통해 호스트 접근한 후 에 "숨겨진" FLAG를 읽어내세요. FLAG는 무엇일까요?  
+### #11 KEY TO "HACK-BACK"
+> 공격자의 Github 리포를 조사해봅시다.. 혹시 재밌는걸 찾으셨나요? 이런! 공격자는 아주 "치명적인" OPSEC 실수를 저질렀습니다! 해당 정보를 사용하여 공격자의 리다이렉터 호스트로 접근 (Initial Access)하세요! 찾아낸 KEY를 통해 호스트 접근한 후 에 "숨겨진" FLAG를 읽어내세요. FLAG는 무엇일까요?  
 
 Now, it's getting more interesting! We need to access the attacker's redirectory as host using leaked key.<br/><br/>
 
@@ -39,7 +41,25 @@ Using the passphrase, we are finally inside the redirectory! Hoorayyy. I tried u
 Using ```cat``` comamnd on the file and we got the flag!  
 **Flag: FLAG{YOUALMOSTGOTME!@#$%@#!#}**<br/><br/>
 
-### #12 공격자는 당신이 리다이렉터까지 접근할줄 몰랐을 겁니다.. 이제 리다이렉터에 연결된 미지의 C2 서버의 Public IP를 알아내야합니다! 해당 C2 IP는 무엇일까요?
+### #12 Command&Control
+> 공격자는 당신이 리다이렉터까지 접근할줄 몰랐을 겁니다.. 이제 리다이렉터에 연결된 미지의 C2 서버의 Public IP를 알아내야합니다! 해당 C2 IP는 무엇일까요?
 
 The plan for C2 redirectory was actually mentioned in the previous attack plan:  
+![C2-1](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part2/C2-1.png)<br/><br/>
+
+It is first important to understand how does port masquerading and C2 pivoting works.  
+So basically, if the attacker is running the phishing website directly from their C2 server, it would make it easier to be detected and stopped by TI. To prevent this from happening, the attacker use port masquerading technique so the traffic will look normal, and also pivot their C2 server to hide the real infrastructure from being detected.<br/>
+
+To paint a bigger picture, I imagine it like this: ```victim -> fake website -> some relay server/ssh tunnel -> actual C2 server```  
+![C2-1](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part2/C2-2.png)<br/><br/>
+
+We can use Linux commands to analyze the network. Since there is a mention about ```socat```(a command line based utility that establishes two bidirectional byte streams and transfers data between them), I first investigate if there are any existing socat services running in the network. Also, I used ```netstat``` command to see established connections.  
+![C2-1](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part2/C2-3.png)<br/><br/>
+
+Okayy so there are socat services running in the background just like what was mentioned in the attack plan. Also, there are some connections established from port 22. Port 22 is known to signal SSH usage within the network. This is like a direct nod to our initial hypothesis that the attacker uses ssh tunnel to connect to the actual C2 server! The IP address being shown as the destination for our port 22 is the answer for this question :)  
+
+**Flag: 158.180.6.169**<br/><br/>
+
+### #13 Under The "Deep" Sea
+> 리다이렉터 호스트를 좀 더 조사하던 중 공격자가 운영하는 숨겨진 공격 어드민 패널 정보가 발견되었습니다. 해당 비밀 서비스에 접속해보니.. 와우! 정말 많은 정보가 있습니다! 해당 서비스에 접속해 파일들을 조사하고, 숨겨진 FLAG를 찾아나세요!
 

@@ -67,4 +67,14 @@ The word "Deep" in the challenge name is hinting to the Deep Web that might act 
 ![Deep-1.png](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part2/Deep-1.png)<br/><br/>
 
 We see there there's an onion link in the ```.bash``` file. I moved to TOR browser and pasted the link directly. Here's what we got:  
-![Deep-1.png](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part2/Deep-2.png)<br/><br/>
+![Deep-3.png](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part2/Deep-3.png)<br/><br/>
+
+I proceeded to have a walk around the website. After clicking on the "open dashboard", it led me to some files being displayed on the dashboard. By clicking on a file called ```stolen_payment_records.csv```, we immidiately got our flag:  
+![Deep-4.png](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part2/Deep-4.png)<br/><br/>
+
+**Flag: FLAG{R@CC0ONTHEBEST}**<br/><br/>
+
+### #14 Ransomware Artifact
+> 공격자가 다음 랜섬웨어 사용할 랜섬웨어 바이너리(예, ransom_loader.exe)를 조사한 후 SHA256 해쉬값을 알아내세요!
+
+I was pretty hesitant to download the ```.exe``` file at first because what if it infected my laptop?? I decided not to run it and have a look at the file type first:  

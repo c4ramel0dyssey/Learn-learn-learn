@@ -91,7 +91,7 @@ There we got it!
 ### #8 Sock Puppets
 > 라쿤코인 IT팀은 라쿤코인 직원을 사칭해 고객에게 링크드인 DM(피싱 링크 포함)을 발송한 정황을 발견하였습니다. 하지만 라쿤코인은 직원 개인의 공식 LinkedIn 프로필을 운영하지 않는다 합니다! 가짜(사칭) LinkedIn 프로필은 무엇일까요?
 <br/>
-In the previous ```plan.txt```file, the plan for creating a LinkedIn profile is described by using the name "Soyeong Park."  
+In the previous plan.txt file, the plan for creating a LinkedIn profile is described by using the name "Soyeong Park."  
 ![Linkedin-1.png](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part1/Linkedin-1.png)<br/><br/> 
 
 Just with a couple searches in Linkedin, it doesn't take long until I was able to find the said account.  

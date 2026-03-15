@@ -63,3 +63,8 @@ Okayy so there are socat services running in the background just like what was m
 ### #13 Under The "Deep" Sea
 > 리다이렉터 호스트를 좀 더 조사하던 중 공격자가 운영하는 숨겨진 공격 어드민 패널 정보가 발견되었습니다. 해당 비밀 서비스에 접속해보니.. 와우! 정말 많은 정보가 있습니다! 해당 서비스에 접속해 파일들을 조사하고, 숨겨진 FLAG를 찾아나세요!
 
+The word "Deep" in the challenge name is hinting to the Deep Web that might act as the server for the admin panel. Since deep web URLs often end with ```.onion```, I started with searching for that string first in the directory.  
+![Deep-1.png](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part2/Deep-1.png)<br/><br/>
+
+We see there there's an onion link in the ```.bash``` file. I moved to TOR browser and pasted the link directly. Here's what we got:  
+![Deep-1.png](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part2/Deep-2.png)<br/><br/>

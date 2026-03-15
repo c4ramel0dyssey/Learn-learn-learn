@@ -31,7 +31,7 @@ chmod 600 private_key
 ```
 <br/>
 This way, only the owner has access towards the file. After that, I was finally able to access the host but oh, it then asked for a passphrase. I looked into the other repos and yup there it is:  
-
+![Passphrase.png](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/Passphrase.png)<br/><br/>
 
 Using the passphrase, we are finally inside the redirectory! Hoorayyy. I tried using ```ls``` at first but there seems to not be that many files in the system.. So I tried ```ls -a``` instead and there's a file called ```flag.txt```.<br/><br/>
 

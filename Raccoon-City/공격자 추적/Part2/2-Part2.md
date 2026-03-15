@@ -1,6 +1,6 @@
 ### #10 Find their Geo-Location
 > 공격자의 Github 리포를 조사해봅시다.. 재밌는걸 찾으셨나요? 혹시 ... 공격자의 위치를 특정할 무언가를 찾을 수 있나요? 공격자의 머물렀던 지역을 특정하려 합니다. 특히 한국시간 KST 2025년 11월 13일 오전 11시 45분 25초에 공격자가 상주했을 "가능성"이 있는 나라는 어디일까요?  
-
+<br/>
 I first started off by looking into the contributions made on the said date.  
 ![Geolocation-1](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part2/Geolocation-1.png)<br/><br/>
 
@@ -18,7 +18,7 @@ Boom! Looks like we have our answer!
 
 ### #11 KEY TO "HACK-BACK"
 > 공격자의 Github 리포를 조사해봅시다.. 혹시 재밌는걸 찾으셨나요? 이런! 공격자는 아주 "치명적인" OPSEC 실수를 저질렀습니다! 해당 정보를 사용하여 공격자의 리다이렉터 호스트로 접근 (Initial Access)하세요! 찾아낸 KEY를 통해 호스트 접근한 후 에 "숨겨진" FLAG를 읽어내세요. FLAG는 무엇일까요?  
-
+<br/>
 Now, it's getting more interesting! We need to access the attacker's redirectory as host using leaked key.<br/><br/>
 
 Looking at the history of commits, I soon discovered the serious mistake made by the attacker. The SSH private key is found to be among one of the earliest repositories posted in the Github!  
@@ -43,7 +43,7 @@ Using ```cat``` comamnd on the file and we got the flag!
 
 ### #12 Command&Control
 > 공격자는 당신이 리다이렉터까지 접근할줄 몰랐을 겁니다.. 이제 리다이렉터에 연결된 미지의 C2 서버의 Public IP를 알아내야합니다! 해당 C2 IP는 무엇일까요?
-
+<br/>
 The plan for C2 redirectory was actually mentioned in the previous attack plan:  
 ![C2-1](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part2/C2-1.png)<br/><br/>
 
@@ -62,7 +62,7 @@ Okayy so there are socat services running in the background just like what was m
 
 ### #13 Under The "Deep" Sea
 > 리다이렉터 호스트를 좀 더 조사하던 중 공격자가 운영하는 숨겨진 공격 어드민 패널 정보가 발견되었습니다. 해당 비밀 서비스에 접속해보니.. 와우! 정말 많은 정보가 있습니다! 해당 서비스에 접속해 파일들을 조사하고, 숨겨진 FLAG를 찾아나세요!
-
+<br/>
 The word "Deep" in the challenge name is hinting to the Deep Web that might act as the server for the admin panel. Since deep web URLs often end with ```.onion```, I started with searching for that string first in the directory.  
 ![Deep-1.png](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part2/Deep-1.png)<br/><br/>
 
@@ -76,5 +76,15 @@ I proceeded to have a walk around the website. After clicking on the "open dashb
 
 ### #14 Ransomware Artifact
 > 공격자가 다음 랜섬웨어 사용할 랜섬웨어 바이너리(예, ransom_loader.exe)를 조사한 후 SHA256 해쉬값을 알아내세요!
-
+<br/>
 I was pretty hesitant to download the ```.exe``` file at first because what if it infected my laptop?? I decided not to run it and have a look at the file type first:  
+![Exe.png](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part2/Exe.png)<br/><br/>
+
+Lol I was worried for nothing. Ok so moving on to the main point of the question, it is actually straight-forward. All we need to do is hash the file and submit the hash value as our flag.  
+```
+SHA256 ransom_loader_v2.exe  
+```
+<br/>
+**Flag: e4c1572b153b10ed540f415dc436a87c7b46f0965daaa3ac98df3072925013e8**<br/><br/>
+
+Yayyy all done!

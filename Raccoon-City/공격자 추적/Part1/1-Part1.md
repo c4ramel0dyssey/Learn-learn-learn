@@ -1,23 +1,7 @@
-# Raccoon City - 공격자 추적
-
-As part of weekly practices with E-COPS, solving challenges in Raccoon City is an opportunity to learning and applying various techniques such as the footwork of
-Threat Intelligence, OSINT, C2 server and more port masquerading. Working on these questions also tested what I've learned from past CTFs in terms of familiarity
-with Linux commands, while adding more knowledge to it.  
-
-## Challenges 
-
-> 이메일 본문에는 복지 포털 접속 링크와 함께 CEO Tony Raccoon의 사인이 포함되어 있었다. 그러나 문제는 — CEO 본인은 이 메일을 보낸 적이 없었다?!
-RaccoonCoin IT팀은 즉시 보안 경보를 발령하고, 메일의 발송 경로를 끝까지 추적해 누가, 어디서, 어떻게 보냈는지 밝혀내야 한다!!
-이제 여러분은 RaccoonCoin의 TI 분석가로서, 공격자의 흔적을 추적해야 한다.
-
-To start off with a storyline, employees at the RaccoonCoin received an email said to be from the CEO, asking them to log in into the company's portal using a link 
-attached in the email. However, concerns arise when the CEO denies sending that email, leading to the Threat Intelligence (TI) to take actions. Which in this case,
-players are acting as the TI!:) <br/>
-
-### Warming up: 실전 Threat Intelligence 추적 챌린지  
+ ### Warming up: 실전 Threat Intelligence 추적 챌린지  
 
 > TI팀에서 근무하는 당신, 사이버 보안에서 TI는 무엇의 약자일까요?
-
+<br/>
 The answer to this question is pretty obvious since we've just discussed about it in the introduction lol. But to follow the flow of the game, we can start by viewing
 the given ```.eml``` file and analyze the clues from there.<br/>  
 
@@ -27,8 +11,9 @@ This is the first email file we were presented with. It's an email from the IT S
 
 **Flag: Threat Intelligence**<br/><br/>
 
-### #1 공격자가 피싱에 사용한 피싱 도메인 (Phishing Domain)은 무엇인가요?  
-
+### #1 Suspicious Domain
+> 공격자가 피싱에 사용한 피싱 도메인 (Phishing Domain)은 무엇인가요?  
+<br/>
 ![Domain.png](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part1/Domain.png)<br/>  
 
 This is also a straight-forward question. We can easily find the domain used by the attacker from this part of the email.  
@@ -36,8 +21,9 @@ This is also a straight-forward question. We can easily find the domain used by 
 
 **Flag: racooncoin.site**<br/><br/>  
 
-### #2 이처럼 사람의 오타 가능성을 노려 유사한 철자(또는 문자)를 등록해 피싱·사기 등에 악용하는 기법을 무엇이라고 부르나요?  
-
+### #2 What is this Domain?
+> 이처럼 사람의 오타 가능성을 노려 유사한 철자(또는 문자)를 등록해 피싱·사기 등에 악용하는 기법을 무엇이라고 부르나요?  
+<br/>
 There are five options given and we need to select one that fits the situation. Let's look at all of them one by one:  
 
 1. Domain Hijacking: Also known as Domain Theft, a situation where the attacker gain unauthorized access over the domain name/accounts. This is wrong because in this scenario, the attackers did not have a direct control over the actual domain, but rather created a new one close to it.
@@ -48,8 +34,9 @@ There are five options given and we need to select one that fits the situation. 
 
 **Flag: Typosquatting**<br/><br/>  
 
-### #3 이메일 본문에 포함된 링크를 통해 공격자가 시도한 공격 유형은 무엇일까요?  
-
+### #3 Phishing Link
+> 이메일 본문에 포함된 링크를 통해 공격자가 시도한 공격 유형은 무엇일까요?  
+<br/>
 To answer this, we need to try clicking on the phishing link and see for ourselves.  
 ![Phishing Link.png](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part1/Phishing%20Link.png)<br/>  
 
@@ -57,8 +44,9 @@ We're presented with this interface. What we can understand from here, the attac
 
 **Flag: Credential Harvesting**<br/><br/>  
 
-### #4해당 공격 사이트를 살펴보던 중 의심스러운 IP의 흔적을 발견하였습니다.  
-
+### #4 Suspicious IP
+> 해당 공격 사이트를 살펴보던 중 의심스러운 IP의 흔적을 발견하였습니다.  
+<br/>
 To approach this question, we can analyze the backend process underneath the interface layers.  
 ![IP Address](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part1/IP%20Address.png)<br/>  
 
@@ -66,15 +54,17 @@ We can see that once users click on submit, the credentials will be sent to an I
 
 **Flag: 140.238.194.224**<br/><br/>  
 
-### #5 공격자는 다양한 공격 인프라를 구축합니다. 전 문제 (Suspicious IP)에서 찾은 공격자 호스트는 어떤 타입의 인프라일 가능성이 있을까요?  
-
+### #5 What is this IP for?
+> 공격자는 다양한 공격 인프라를 구축합니다. 전 문제 (Suspicious IP)에서 찾은 공격자 호스트는 어떤 타입의 인프라일 가능성이 있을까요?  
+<br/>
 As mentioned before, the main reason behind the IP address is to send the credentials to another location. In another word, this describes the term "redirect." 
 Also, from http://140.238.194.224, we know the protocol is HTTP. Thus, the flag is..<br/>  
 
 **Flag: HTTP Redirector**<br/><br/>
 
-### #6 공격자의 호스트를 찾아낸 당신. 이제 이 IP에 대해 조사해야 합니다. 앗! 해당 호스트를 조사하던 중 보통 리다이렉터들이 오픈한 포트 외 다른 포트가 열려있습니다! 해당 포트는 무엇일까요?  
-
+### #6 They still make mistakes!
+> 공격자의 호스트를 찾아낸 당신. 이제 이 IP에 대해 조사해야 합니다. 앗! 해당 호스트를 조사하던 중 보통 리다이렉터들이 오픈한 포트 외 다른 포트가 열려있습니다! 해당 포트는 무엇일까요?  
+<br/>
 This is where Linux commands come into action to help us identify the open ports available withon the IP address.  
 ![Port.png](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part1/Port.png)<br/>  
 
@@ -82,7 +72,8 @@ Using the command ```nmap -sV [IP address]```, we can identify the services runn
 
 **Flag: 8081**<br/><br/>
 
-### #7 해당 포트로 조사하던 당신.. 앗! 해당 호스트에는 굉장히 흥미로운 파일들이 있습니다. 해당 파일들을 조사하고 FLAG를 찾아내고 제출하세요!  
+### #7 What's their attack plan?
+> 해당 포트로 조사하던 당신.. 앗! 해당 호스트에는 굉장히 흥미로운 파일들이 있습니다. 해당 파일들을 조사하고 FLAG를 찾아내고 제출하세요!  
 
 After trying to access the following URL: http://140.238.194.224:8081, we were directed to this page:<br/>  
 ![Attack Plan](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part1/Attack%20Plan.png)<br/>
@@ -97,8 +88,9 @@ Woah it seems to be a very detailed description of planned attacks, including th
 There we got it!  
 **Flag: FLAG{KOREAN#1COMMUNITYRR}**<br/><br/>
 
-### #8 라쿤코인 IT팀은 라쿤코인 직원을 사칭해 고객에게 링크드인 DM(피싱 링크 포함)을 발송한 정황을 발견하였습니다. 하지만 라쿤코인은 직원 개인의 공식 LinkedIn 프로필을 운영하지 않는다 합니다! 가짜(사칭) LinkedIn 프로필은 무엇일까요?
-
+### #8 Sock Puppets
+> 라쿤코인 IT팀은 라쿤코인 직원을 사칭해 고객에게 링크드인 DM(피싱 링크 포함)을 발송한 정황을 발견하였습니다. 하지만 라쿤코인은 직원 개인의 공식 LinkedIn 프로필을 운영하지 않는다 합니다! 가짜(사칭) LinkedIn 프로필은 무엇일까요?
+<br/>
 In the previous ```plan.txt```file, the plan for creating a LinkedIn profile is described by using the name "Soyeong Park."  
 ![Linkedin-1.png](https://github.com/c4ramel0dyssey/Learn-learn-learn/blob/main/Raccoon-City/%EA%B3%B5%EA%B2%A9%EC%9E%90%20%EC%B6%94%EC%A0%81/Part1/Linkedin-1.png)<br/><br/> 
 

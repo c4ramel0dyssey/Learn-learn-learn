@@ -41,4 +41,20 @@ Once installation is finished, we can find ZAP in the menu tab by clicking on "W
 
 ## Exploring basic functionalities
 
+<img width="1881" height="693" alt="Screenshot 2026-03-24 202812" src="https://github.com/user-attachments/assets/d244a02d-8731-4dd5-97d9-4354497ebb12" /><br/>
 
+ZAP consist of various helpful functionalities. Some of the familiar elements can be summarized as follows:<br/>
+1. Automated Scan<br/>
+- Scans the target website to detect common security vulnerabilities without requiring manual input.
+- Combines crawling and attack techniques to quickly identify issues.
+2. Manual Exploration<br/>
+- Manually browses the website while OWASP ZAP records all requests and responses. This helps analyze how the application behaves and ensures hidden pages can also be tested.
+3. Active Scan<br/>
+- Actively sends malicious or unexpected inputs to the web application to identify vulnerabilities such as SQL injection or XSS to stimulate real attack behavior.
+4. Passive Scan<br/>
+- Similar to the above, but it is rather not intrusive and inspects traffic without doing any alteration and only raises informational or low impact alerts.
+5. AJAX Spider<br/>
+- Used to crawl modern web applications that rely on JavaScript (AJAX) to load content dynamically.
+- Unlike regular spider that only follows static links, it stimulates a real browser, executes Javascript, and interacts with dynamic elements that can only be reached after client side rendering (buttons, menus, forms).
+
+More functionalities can be discovered in the ```Tools``` bar at the left top.

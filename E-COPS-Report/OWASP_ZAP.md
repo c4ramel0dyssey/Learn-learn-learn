@@ -43,8 +43,7 @@ Once installation is finished, we can find ZAP in the menu tab by clicking on "W
 
 After a whole damn journey of setting up ZAP in Kali Linux, installing and uninstalling Apache2, finally I managed to get it running!<br/>
 
-<img width="1881" height="693" alt="Screenshot 2026-03-24 202812" src="https://github.com/user-attachments/assets/d244a02d-8731-4dd5-97d9-4354497ebb12" /><br/>
-
+<img width="1881" height="693" alt="Screenshot 2026-03-24 202812" src="https://github.com/user-attachments/assets/d244a02d-8731-4dd5-97d9-4354497ebb12"/><br/>
 ZAP consist of various helpful functionalities. Some of the familiar elements can be summarized as follows:<br/>
 **1. Automated Scan**<br/>
 - Scans the target website to detect common security vulnerabilities without requiring manual input.
